@@ -13,16 +13,13 @@
   (= (number-of-digits n) 10))
 
 (defn drop-first-get-rest [n]
-  (.substring n 1)
-  )
+  (.substring n 1))
 
 (defn starts-with-1? [n]
-  (= "1" (.substring n 0 1))
-  )
+  (= "1" (.substring n 0 1)))
 
 (defn extract-digits [n]
-  (apply str (filter #(. Character (isDigit %)) n))
-  )
+  (apply str (filter #(. Character (isDigit %)) n)))
 
 (def bad-number "0000000000")
 
@@ -38,28 +35,14 @@
     (.substring n 0 3)))
 
 (defn first-3 [n]
-  (.substring n 3 6)
-  )
+  (.substring n 3 6))
 
 (defn tail [n]
-  (.substring n 6)
-  )
+  (.substring n 6))
 
 (defn pp [n]
-  (str "(" (area-code n) ") " (first-3 n) "-" (tail n))
-  )
+  (str "(" (area-code n) ") " (first-3 n) "-" (tail n)))
 
-(defn pretty-print [number]
-  (let [n (extract-digits number)]
-    (if (fewer-than-10-digits? n)
-      bad-number
-      (if (exactly-11-digits? n)
-        (pp (drop-first-get-rest n))
-        (pp n)
-        )
-    )
-  )
-  )
-
-
-
+(defn pretty-print [no]
+  (let [n (number no)]
+    (pp n)))
