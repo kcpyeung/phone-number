@@ -1,12 +1,16 @@
 (ns phone-number)
 
+(defn number-of-digits [n]
+  (count n))
+
 (defn fewer-than-10-digits? [n]
-  (< (count n) 10)
-  )
+  (< (number-of-digits n) 10))
 
 (defn exactly-11-digits? [n]
-  (= (count n) 11)
-  )
+  (= (number-of-digits n) 11))
+
+(defn exactly-10-digits? [n]
+  (= (number-of-digits n) 10))
 
 (defn drop-first-get-rest [n]
   (.substring n 1)
@@ -24,18 +28,10 @@
 
 (defn number [number]
   (let [n (extract-digits number)]
-    (if (fewer-than-10-digits? n)
-      bad-number
-      (if (exactly-11-digits? n)
-        (if (starts-with-1? n)
-          (drop-first-get-rest n)
-          bad-number
-          )
-        n
-        )
-      )
-    )
-  )
+    (cond
+       (exactly-10-digits? n) n
+       (and (exactly-11-digits? n) (starts-with-1? n)) (drop-first-get-rest n)
+       :else bad-number)))
 
 (defn area-code [number]
   (let [n (extract-digits number)]
