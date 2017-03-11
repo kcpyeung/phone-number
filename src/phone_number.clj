@@ -3,9 +3,6 @@
 (defn number-of-digits [n]
   (count n))
 
-(defn fewer-than-10-digits? [n]
-  (< (number-of-digits n) 10))
-
 (defn exactly-11-digits? [n]
   (= (number-of-digits n) 11))
 
