@@ -33,17 +33,9 @@
        (and (exactly-11-digits? n) (starts-with-1? n)) (drop-first-get-rest n)
        :else bad-number)))
 
-(defn area-code [number]
-  (let [n (extract-digits number)]
-    (if (fewer-than-10-digits? n)
-      bad-number
-      (if (exactly-11-digits? n)
-        (.substring (drop-first-get-rest n) 0 3)
-        (.substring n 0 3)
-        )
-      )
-    )
-  )
+(defn area-code [no]
+  (let [n (number no)]
+    (.substring n 0 3)))
 
 (defn first-3 [n]
   (.substring n 3 6)
